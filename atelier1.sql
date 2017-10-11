@@ -39,8 +39,8 @@ create table Atelier (
 	no_anim number(4),
     constraint atelier_no_anim_fk foreign key (no_anim) 
         references Animateur(no_anim) on delete set null 
--- on conserve l'atelier si l'animateur est supprimé, 
--- l'atelier ne référence plus auncun animateur (no_anim is null)
+-- on conserve l'atelier si l'animateur est supprimÃ©, 
+-- l'atelier ne rÃ©fÃ©rence plus auncun animateur (no_anim is null)
 );
 
 create table Activite (
@@ -51,7 +51,7 @@ create table Activite (
 	constraint activite_atelier_fk
 		foreign key (no_atel) references Atelier(no_atel) 
 		on delete cascade
--- on supprime toutes les activités si l'atelier est supprimé
+-- on supprime toutes les activitÃ©s si l'atelier est supprimÃ©
 );
 
 create table Inscription (
