@@ -188,7 +188,7 @@ order by nom
 ;
   
 -- Atelier 3.h 
-select no_atel, intitule, genr e, count(*) effectif
+select no_atel, intitule, genre, count(*) effectif
   from inscription
     inner join atelier using (no_atel)
   group by intitule, genre, no_atel

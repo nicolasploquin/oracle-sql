@@ -56,7 +56,7 @@ select nom, prenom, ville
 
 
 
--- sans sous-requête
+-- sans sous-requï¿½te
 
 select adh.nom, adh.prenom, ville 
   from adherent adh_germain
@@ -230,7 +230,7 @@ select no_adher, nom, prenom, date_naissance, intitule, genre
     )
 ;
   
--- étapes intermédiaires
+-- ï¿½tapes intermï¿½diaires
 select nom, prenom, intitule, genre, date_naissance
   from adherent
     inner join inscription using (no_adher)
@@ -295,7 +295,7 @@ select nom, prenom, intitule, genre, date_naissance
  
   
 -- Atelier 5.5a
--- sous-requête corrélée
+-- sous-requï¿½te corrï¿½lï¿½e
 select nom, prenom, ville, date_naissance
   from adherent adh_ext
   where date_naissance = (
@@ -357,8 +357,6 @@ select distinct prenom, nom, ville, date_naissance,
   order by ville, date_naissance
 ;
 
-
-
 select distinct
   first_value(prenom) over (partition by ville order by date_naissance asc) prenom,
   first_value(nom) over (partition by ville order by date_naissance asc) nom,
@@ -381,6 +379,19 @@ select nom, prenom, note, intitule
     ) using (no_atel,note)
   order by note desc,intitule
 ;
+
+select nom, prenom, note, intitule      -- avec fonction analytique rank()
+  from (
+        select no_insc, no_atel, no_adher, note,
+            rank() over (partition by no_atel order by note desc) note_rank
+        from inscription
+    ) inner join atelier using (no_atel)
+    inner join adherent using (no_adher)
+    where note_rank = 1
+  order by note desc,intitule
+;
+
+
 
 -- Atelier 5.7
 select no_anim,nom,prenom,avg(note) moyenne

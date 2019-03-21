@@ -5,7 +5,7 @@ explain plan for
     
 select plan_table_output from table(dbms_xplan.display());
 
--- explain plan nommé
+-- explain plan nommï¿½
 explain plan
   set statement_id = 'adh_nantes'
 for 
@@ -19,7 +19,7 @@ select plan_table_output
   from table(dbms_xplan.display(null,'adh_nantes','TYPICAL'));
   
   
--- explain plan nommé  
+-- explain plan nommï¿½  
 explain plan
   set statement_id = 'adh_poirier'
 for
